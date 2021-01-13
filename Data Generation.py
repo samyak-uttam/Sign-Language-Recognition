@@ -3,20 +3,27 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import cv2
+import json
 
-labels = {
-    0: '0', 1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8',
-    9: '9', 10: 'a', 11: 'b', 12: 'c', 13: 'd', 14: 'e', 15: 'f', 16: 'g',
-    17: 'h', 18: 'i', 19: 'j', 20: 'k', 21: 'l', 22: 'm', 23: 'n', 24: 'o',
-    25: 'p', 26: 'q', 27: 'r', 28: 's', 29: 't', 30: 'u', 31: 'v', 32: 'w',
-    33: 'x', 34: 'y', 35: 'z'   
-}
+# open and get the constants from the json file
+f = open('Constants.json')
+data = json.load(f)
 
-IMG_SIZE = 320
-    
+labels = data['labels']
+
+# number of classes
+NUM_CLASSES = data['NUM_CLASSES']
+
+# number of samples per class
+SAMPLES_PER_CLASS = data['SAMPLES_PER_CLASS']
+
+# size of the images to be generated
+IMG_SIZE = data['IMG_SIZE']
+
+# dictionary to hold the generated data
 samples = {}
 
-for key in range(36):
+for key in range(NUM_CLASSES):
     samples[key] = {}
     samples[key]['name'] = key
     samples[key]['images'] = []
@@ -41,7 +48,7 @@ def gatherData():
     while True:
         ret, frame = cam.read()
 
-        if count == 3600:
+        if count == NUM_CLASSES * SAMPLES_PER_CLASS:
             print('All images captured, closing.')
             break
 
@@ -84,10 +91,10 @@ def gatherData():
         img_arr = np.array(resized_img)
         img_arr = img_arr.reshape(IMG_SIZE, IMG_SIZE, 1)
 
-        cv2.putText(frame, 'Press Space for capturing images of ' + labels[int(count / 100)], (3, 365), font, 0.75, (255, 0, 0), 2, cv2.LINE_4)
-        cv2.putText(frame, 'Captured ' + str(count % 100) + ' images of ' + labels[int(count / 100)], (3, 415), font, 0.75, (255, 0, 0), 2, cv2.LINE_4)
+        cv2.putText(frame, 'Press Space for capturing images of ' + labels[str(int(count / 100))], (3, 365), font, 0.75, (255, 0, 0), 2, cv2.LINE_4)
+        cv2.putText(frame, 'Captured ' + str(count % 100) + ' images of ' + labels[str(int(count / 100))], (3, 415), font, 0.75, (255, 0, 0), 2, cv2.LINE_4)
         if not canPressSpace:
-            cv2.putText(frame, 'Captured all images of ' + labels[int((count - 1) / 100)] + '. Press enter for next label.', (3, 465), font, 0.75, (255, 0, 0), 2, cv2.LINE_4)
+            cv2.putText(frame, 'Captured all images of ' + labels[str(int((count - 1) / 100))] + '. Press enter for next label.', (3, 465), font, 0.75, (255, 0, 0), 2, cv2.LINE_4)
         cv2.imshow('video', frame)
         
         if not enterPressed and count % 100 == 0:
@@ -102,7 +109,7 @@ def gatherData():
             if not canPressSpace:
                 continue
             samples[int(count / 100)]['images'].append(img_arr)
-            print('Taken ' + str(count % 100) + ' samples of: ' + labels[int(count / 100)])
+            print('Taken ' + str(count % 100) + ' samples of: ' + labels[str(int(count / 100))])
             count = count + 1
             enterPressed = False
 
@@ -120,9 +127,9 @@ def saveData(samples):
     if('dataset' not in os.listdir()):
         os.mkdir('dataset')
     
-    # store images of each laabels in their respective folder
+    # store images of each labels in their respective folder
     for key, value in samples.items():
-        class_name = labels[value['name']]
+        class_name = labels[str(value['name'])]
         dir_name = os.path.join('dataset', class_name)
         if class_name not in os.listdir('dataset'):
             os.mkdir(dir_name)
@@ -136,5 +143,6 @@ def saveData(samples):
 
 
 # gather and save the data
-samples = gatherData()
-saveData(samples)
+if __name__ == '__main__':
+    samples = gatherData()
+    saveData(samples)
