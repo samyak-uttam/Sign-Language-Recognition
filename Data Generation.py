@@ -61,7 +61,7 @@ def gatherData():
         # get the mirror image
         frame = cv2.flip(frame, 1)
         
-        image=preprocess(frame)
+        image = preprocess(frame)
 
         cv2.imshow('hand', image)
 
