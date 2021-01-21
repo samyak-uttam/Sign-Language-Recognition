@@ -1,0 +1,23 @@
+#videoElement {
+	border: 30px solid #ccc;
+	background: green;
+	width: 720px;
+	height: 540px;
+}
+
+h1 {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 60px;
+	color: white;
+	font-family: Verdana;
+	text-align: center;
+	background: black;
+}
+
+img {
+	width: 720px;
+	height: 540px;
+	margin-right: 80px;
+	border: 30px solid #ccc;
+}
