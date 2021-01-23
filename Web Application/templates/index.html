@@ -5,14 +5,41 @@
 		<meta charset="UTF-8"/>
 		<title>Home Page</title>
 
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="{{ url_for('static',filename='./style.css') }}">
 	</head>
 	<body>
 		<h1>Sign Language Detector</h1>
 		<center>
 			<img src="https://qualityansweringservice.com/wp-content/uploads/2010/01/images_abc1280x960.png" alt="Signs">
-			<video autoplay="true" id="videoElement"></video>
+
+			<img id="feed" src="{{ url_for('video_feed') }}">
 		</center>
-		<script src="script.js"></script>
+		<div>
+			<h2>Character: </h2>
+			<iframe frameborder="0" noresize="noresize" style='background: transparent; width: 100%; height:100%;' src="{{ url_for('results_feed')}}"></iframe>
+		</div>
+		<div>
+			<h2>Word: </h2>
+			<p id="word"></p>
+		</div>
+		<div>
+			<h2>Sentence: </h2>
+			<p id="sentence"></p>
+		</div>
+		<script type="text/javascript">
+			var character = document.querySelector('#character');
+			var word = document.querySelector('#word');
+			var sentence = document.querySelector('#sentence');
+    		var position = 0;
+			
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', '{{ url_for('results_feed') }}');
+    		xhr.send();
+    		var messages = xhr.responseText.split('\n');
+        	messages.slice(position, -1).forEach(function(value) {
+        		character.innerText = value;
+    		});
+        	position = messages.length - 1;
+		</script>
 	</body>
 </html>

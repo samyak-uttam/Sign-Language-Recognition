@@ -1,10 +1,3 @@
-#videoElement {
-	border: 30px solid #ccc;
-	background: green;
-	width: 720px;
-	height: 540px;
-}
-
 h1 {
 	padding-top: 15px;
 	padding-bottom: 15px;
@@ -13,6 +6,23 @@ h1 {
 	font-family: Verdana;
 	text-align: center;
 	background: black;
+}
+
+div {
+	border: 3px solid black;
+	padding: 5px;
+	margin: 10px;
+}
+
+h2 {
+	display: inline;
+	font-size: 30px;
+}
+
+p {
+	display: inline;
+	font-size: 25px;
+	color: red;
 }
 
 img {

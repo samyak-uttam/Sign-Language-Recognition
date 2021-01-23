@@ -15,6 +15,7 @@ sns.set()
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 
 
+# open and get the constants from the json file
 f = open('Constants.json')
 data = json.load(f)
 
