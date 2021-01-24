@@ -38,7 +38,7 @@ def generateFrames():
 	sentence = ''
 
 	count = {}
-	blank_count = 0;
+	blank_count = 0
 
 	for i in classes:
 		count[i] = 0
@@ -66,9 +66,8 @@ def generateFrames():
 
 		if len(current_word) != 0 and character == 'blank':
 			blank_count += 1
-			if blank_count > 100:
-				sentence += ' '
-				sentence += current_word
+			if blank_count > 80:
+				sentence += ' '  + current_word
 				current_word = ''
 				for i in classes:
 					count[i] = 0
@@ -96,6 +95,9 @@ def generateFrames():
 
 app = Flask(__name__)
 
+# so that css dosen't get cached just refresh the page to see css changes
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
 @app.route('/')
 def home():
 	return render_template('index.html')
@@ -108,11 +110,13 @@ def video_feed():
 def results_feed():
 	def generate():
 		while True:
-			for key, value in results.items():
-				yield "{}\n".format(value)
-				sleep(1)
+			cur = ''
+			for key,value in results.items():
+				cur += value + ' '
+			yield "{}\n".format(cur)
+			sleep(1)
 
 	return app.response_class(generate(), mimetype="text/plain")
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(debug=False)
