@@ -21,7 +21,7 @@ We have build a CNN model with 5 Convolution and MaxPooling layers followed by 2
 Our model provides 99.74% accuracy on training set and 99.35% accuracy on test set.
 
 ### Output
-Following is the live classification output of our model seen using openCV.
+We have implemented the live classification of sign language through our model using Web App and OpenCV.
 
 ## Contributers
 [Samyak Uttam](https://github.com/samyak-uttam) and [Ankit Kumar Mishra](https://github.com/anky008).

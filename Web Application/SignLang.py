@@ -119,4 +119,4 @@ def results_feed():
 	return app.response_class(generate(), mimetype="text/plain")
 
 if __name__ == '__main__':
-	app.run(debug=False)
+	app.run(debug=True)

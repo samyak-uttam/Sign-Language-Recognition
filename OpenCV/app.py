@@ -3,20 +3,21 @@ from tkinter import *
 from PIL import ImageTk, Image
 import numpy as np
 import json
+import sys
+import cv2
 from tensorflow.keras.models import load_model
 from string import ascii_lowercase
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import cv2
-from Preprocess import preprocess
-import seaborn as sns
-sns.set()
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+sys.path.append("..")
+from Preprocess import preprocess
+
 
 
 # open and get the constants from the json file
-f = open('Constants.json')
+f = open('../Constants.json')
 data = json.load(f)
 
 labels = data['labels']
@@ -30,7 +31,7 @@ IMG_SIZE = data['TRAIN_IMG_SIZE']
 classes = ascii_lowercase + '0123456789'
 
 # loading the weights for the model
-model=load_model('sign_lang.h5')
+model=load_model('../sign_lang.h5')
 
 
 class GUI:
@@ -116,7 +117,7 @@ class GUI:
         
         if len(self.current_word) != 0 and self.prediction == 'blank':
             self.blank_count += 1
-            if self.blank_count > 100:
+            if self.blank_count > 80:
                 self.sentence += ' '
                 self.sentence += self.current_word
                 self.current_word = ''

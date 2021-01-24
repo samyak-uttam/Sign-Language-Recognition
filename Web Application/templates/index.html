@@ -5,7 +5,7 @@
 		<meta charset="UTF-8"/>
 		<meta name='viewport' content="width=device-width,initial-scale=1">
 		<title>Sign Language Text Converter </title>
-		<link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
 	</head>
 	
 	<body>
@@ -32,7 +32,32 @@
 			</div>
 		</div>
 		
-		<script type='text/javascript' src="{{ url_for('static',filename='main.js') }}">
+		<script type='text/javascript'>
+			var character = document.querySelector('#character');
+			var word = document.querySelector('#word');
+			var sentence = document.querySelector('#sentence');
+			var position = 0;
+			            
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', "{{ url_for('results_feed') }}");
+			xhr.send();
+			function handleNewdata() {
+			    var messages = (xhr.responseText.split("\n")[position]).split(" ");
+			    
+			    character.innerText = messages[0];
+			    word.innerText = messages[1];
+			    sentence.innerText = messages[2];
+			    console.log(messages);
+			    position += 1;
+			}
+
+			var timer;
+			timer = setInterval(function() {
+			    handleNewdata();
+			    if (xhr.readyState == XMLHttpRequest.DONE) {
+			        clearInterval(timer);
+			    }
+			}, 1000);
 		</script>
 	</body>
 </html>
