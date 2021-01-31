@@ -7,7 +7,7 @@
 	    "34": "x", "35": "y", "36": "z"
 	},
 	"NUM_CLASSES" : 37,
-	"SAMPLES_PER_CLASS": 100,
-	"IMG_SIZE" : 320,
+	"SAMPLES_PER_CLASS": 150,
+	"IMG_SIZE" : 400,
 	"TRAIN_IMG_SIZE" : 200
 }

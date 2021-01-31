@@ -9,16 +9,17 @@ We've built our dataset using OpenCV which includes images of Sign Language Digi
 
 ### Details of dataset
 We have generated images with following specifications:
-- Image size: 320 * 320
+- Image size: 400 * 400
 - Color space: Grayscale
 - Numbers of labels(classes): 37 (0 - 9 digits, a - z characters and blank)
+- Number of images per label: 150
 
 The dataset and the model file can be found [here](https://drive.google.com/drive/folders/1fJ0dQYaLPSlmh0JPRXaq0p1npojAqKIJ?usp=sharing).
 
 ### CNN model
 We have build a CNN model with 5 Convolution and MaxPooling layers followed by 2 Dense layer, which provide the output in range 0 - 36 (corresponding to our 36 labels (0 - 9, a - z and blank)).
 
-Our model provides 99.74% accuracy on training set and 99.35% accuracy on test set.
+Our model provides 100.00% accuracy on training set and 99.93% accuracy on test set.
 
 ### Output
 We have implemented the live classification of sign language through our model using Web App and OpenCV.

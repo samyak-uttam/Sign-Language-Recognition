@@ -69,13 +69,13 @@ def gatherData():
         img_arr = np.array(resized_img)
         img_arr = img_arr.reshape(IMG_SIZE, IMG_SIZE, 1)
 
-        cv2.putText(frame, 'Press Space for capturing images of ' + labels[str(int(count / 100))], (3, 365), font, 0.75, (255, 0, 0), 2, cv2.LINE_4)
-        cv2.putText(frame, 'Captured ' + str(count % 100) + ' images of ' + labels[str(int(count / 100))], (3, 415), font, 0.75, (255, 0, 0), 2, cv2.LINE_4)
+        cv2.putText(frame, 'Press Space for capturing images of ' + labels[str(int(count / SAMPLES_PER_CLASS))], (3, 365), font, 0.75, (255, 0, 0), 2, cv2.LINE_4)
+        cv2.putText(frame, 'Captured ' + str(count % SAMPLES_PER_CLASS) + ' images of ' + labels[str(int(count / SAMPLES_PER_CLASS))], (3, 415), font, 0.75, (255, 0, 0), 2, cv2.LINE_4)
         if not canPressSpace:
-            cv2.putText(frame, 'Captured all images of ' + labels[str(int((count - 1) / 100))] + '. Press enter for next label.', (3, 465), font, 0.75, (255, 0, 0), 2, cv2.LINE_4)
+            cv2.putText(frame, 'Captured all images of ' + labels[str(int((count - 1) / SAMPLES_PER_CLASS))] + '. Press enter for next label.', (3, 465), font, 0.75, (255, 0, 0), 2, cv2.LINE_4)
         cv2.imshow('video', frame)
         
-        if not enterPressed and count % 100 == 0:
+        if not enterPressed and count % SAMPLES_PER_CLASS == 0:
             canPressSpace = False
 
         k = cv2.waitKey(1)
@@ -86,8 +86,8 @@ def gatherData():
             # Space pressed
             if not canPressSpace:
                 continue
-            samples[int(count / 100)]['images'].append(img_arr)
-            print('Taken ' + str(count % 100) + ' samples of: ' + labels[str(int(count / 100))])
+            samples[int(count / SAMPLES_PER_CLASS)]['images'].append(img_arr)
+            print('Taken ' + str(count % SAMPLES_PER_CLASS) + ' samples of: ' + labels[str(int(count / SAMPLES_PER_CLASS))])
             count = count + 1
             enterPressed = False
 
