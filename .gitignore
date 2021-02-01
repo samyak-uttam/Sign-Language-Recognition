@@ -2,4 +2,5 @@
 __pycache__/
 *.pyc
 dataset
-sign_lang.h5
+.pylinytc
+env

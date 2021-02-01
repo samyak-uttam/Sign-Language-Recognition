@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import cv2
 import sys
 from time import sleep
@@ -119,4 +118,4 @@ def results_feed():
 	return app.response_class(generate(), mimetype="text/plain")
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(debug=False)
