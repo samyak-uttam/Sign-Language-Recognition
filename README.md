@@ -5,7 +5,7 @@ In this project, we are trying to build a sign language recognizer to help deaf 
 We've built our model and implemented using OpenCV the classification of Sign Language using CNN from scratch.
 We've built our dataset using OpenCV which includes images of Sign Language Digits from 0 to 9 and characters from a to z.
 
-<img src = 'Web Application/static/images/signs.png'>
+<img src = 'WebApp/static/images/signs.png'>
 
 ### Details of dataset
 We have generated images with following specifications:
