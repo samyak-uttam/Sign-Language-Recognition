@@ -11,6 +11,6 @@ The following is the implementation of live Sign Language Recognition using Open
 	```
 
 ## Output
-<img src = './images/output.png'>
+<img src = '../Results/OpenCV_Output.png'>
 
 Below the camera feed, we have three text fields that show the current character, word, and sentence. And on the right of the camera feed, we have a plot that shows the probability of the current character which is being predicted.

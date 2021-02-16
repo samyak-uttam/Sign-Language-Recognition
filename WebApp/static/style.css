@@ -19,7 +19,7 @@ h1 {
 .text {
 	padding: 4px;
 	margin: 8px;
-	font-size: 20px;
+	font-size: 1.3vw;
 	border: 1px solid black;
 }
 
@@ -30,6 +30,7 @@ h2 {
 p {
 	display: inline;
 	color: red;
+	font-size: 1.3vw;
 }
 
 #main-feed {
@@ -62,6 +63,9 @@ p {
 }
 .text-container{
 	margin-top: 20px;
+	margin-left: 4px;
+	margin-right: 4px;
+	height: 30vh;
 }
 
 /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */

@@ -1,5 +1,5 @@
 import numpy as np
-import cv2
+from cv2 import cv2
 import sys
 from time import sleep
 import json
@@ -111,7 +111,7 @@ def results_feed():
 		while True:
 			cur = ''
 			for key,value in results.items():
-				cur += value + ' '
+				cur += value + '#'
 			yield "{}\n".format(cur)
 			sleep(1)
 

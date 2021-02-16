@@ -64,7 +64,7 @@ Follow the below steps to set up the virtual environment locally
 After this, you are ready to run the code in your machine!
 
 ### Output
-We have implemented the live classification of sign language through our model using Web App and OpenCV.
+We have implemented the live classification of sign language through our model using [Web App](WebApp/) and [OpenCV](OpenCV/).
 
 ## Contributers
 [Samyak Uttam](https://github.com/samyak-uttam) and [Ankit Kumar Mishra](https://github.com/anky008).
